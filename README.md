@@ -1,26 +1,71 @@
-# Ember-cli-deploy-html-manifest
+# ember-cli-html-manifest
 
-This README outlines the details of collaborating on this Ember addon.
+> An ember-cli-deploy plugin to add a versioned manifest attribute to the html element of the index.html page.
+
+<hr/>
+**WARNING: This plugin is only compatible with ember-cli-deploy versions >= 0.5.0**
+<hr/>
+
+This plugin updates the html tag manifest attribute of a html file, presumably index.html.
+
+
+## Quick Start
+To get up and running quickly, do the following:
+
+- Ensure [ember-cli-deploy-build][4] is installed and configured.
+
+- Install this plugin
+
+```bash
+$ ember install ember-cli-deploy-redis
+```
+
+- Place the following configuration into `config/deploy.js`
+
+```javascript
+ENV.html-manifest {
+  
+}
+```
+
+- Run the pipeline
+
+```bash
+$ ember deploy
+```
 
 ## Installation
+Run the following command in your terminal:
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+```bash
+ember install ember-cli-deploy-html-manifest
+```
 
-## Running
+## ember-cli-deploy Hooks Implemented
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+For detailed information on what plugin hooks are and how they work, please refer to the [Plugin Documentation][2].
+
+- `configure`
+- `didPrepare`
+
+## Configuration Options
+
+
+### buildManifestPath
+
+  A funtion that returns the path to the the manifest file.
+
+  ```javascript
+  buildManifestPath(context) {
+    var revisionKey = context.revisionData && context.revisionData.revisionKey;
+
+    return `/_rev/${revisionKey}/manifest.appcache`;
+  }
+  ```
 
 ## Running Tests
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+- `npm test`
 
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+[2]: http://ember-cli.github.io/ember-cli-deploy/plugins "Plugin Documentation"
+[4]: https://github.com/ember-cli-deploy/ember-cli-deploy-build "ember-cli-deploy-build"

@@ -13,6 +13,10 @@ function mkdir(path) {
   }
 }
 
+function cp(src, dest) {
+  fs.createReadStream(src).pipe(fs.createWriteStream(dest));
+}
+
 
 describe('the deploy plugin object', function() {
   var fixtureRoot;
@@ -32,8 +36,8 @@ describe('the deploy plugin object', function() {
 
   beforeEach(function() {
     var subject = require('../../index');
-
-    fs.createReadStream(fixturePage).pipe(fs.createWriteStream(indexPage));
+    
+    cp(fixturePage, indexPage);
 
     plugin = subject.createDeployPlugin({
       name: 'html-manifest'
