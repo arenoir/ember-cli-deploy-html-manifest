@@ -16,33 +16,33 @@ var DeployPluginBase = require('ember-cli-deploy-plugin');
 module.exports = {
   name: 'ember-cli-deploy-html-manifest',
 
-  createDeployPlugin(options) {
+  createDeployPlugin: function(options) {
     var DeployPlugin = DeployPluginBase.extend({
       name: options.name,
 
       defaultConfig: {
-        distDir(context) {
+        distDir: function(context) {
           return context.distDir;
         },
-        buildManifestPath(context) {
+        buildManifestPath: function(context) {
           var revisionKey = context.revisionData && context.revisionData.revisionKey;
 
           return `/_rev/${revisionKey}/manifest.appcache`;
         }
       },
 
-      didPrepare(context) {
+      didPrepare: function(context) {
         var distDir      = this.readConfig('distDir');
         var manifestPath = this.readConfig('buildManifestPath');
         var htmlPagePath = path.join(distDir, 'index.html');
 
         this.log(`Adding manifest attribute to html tag with value of "${manifestPath}".`);
         
-        var modifying = new Promise((resolve, reject) => {
+        var modifying = new Promise(function(resolve, reject) {
           readFile(htmlPagePath).then(
-            (data) => {
+            function(data) {
               replaceHtmlManifest(data, manifestPath).then(
-                (html) => {
+                function(html) {
                   writeFile(htmlPagePath, html).then(resolve, reject);
                 },
                 reject
@@ -53,10 +53,10 @@ module.exports = {
         });
 
         modifying.then(
-          () =>{
+          function() {
             this.log('Successfully added manifest attribute to html tag.', { color: 'green' });
           },
-          () =>{
+          function() {
             this.log('Faild to add manifest attribute to html tag.', { color: 'red' });
           }
         )
