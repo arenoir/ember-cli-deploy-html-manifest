@@ -24,17 +24,24 @@ module.exports = {
         distDir: function(context) {
           return context.distDir;
         },
-        buildManifestPath: function(context) {
+
+        manifestFileName: 'manifest.appcache',
+
+        manifestRoot: function(context) {
           var revisionKey = context.revisionData && context.revisionData.revisionKey;
 
-          return '/_rev/' + revisionKey + '/manifest.appcache';
+          return '/_rev/' + revisionKey;
         }
       },
 
       didPrepare: function(context) {
         var distDir      = this.readConfig('distDir');
-        var manifestPath = this.readConfig('buildManifestPath');
         var htmlPagePath = path.join(distDir, 'index.html');
+        
+        var manifestRoot = this.readConfig('manifestRoot');
+        var filename     = this.readConfig('manifestFileName');
+        var manifestPath = path.join(manifestRoot, filename);
+
 
         this.log('Adding manifest attribute to html tag with value of "' + manifestPath + '".');
         

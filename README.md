@@ -7,7 +7,7 @@
 **WARNING: This plugin is only compatible with ember-cli-deploy versions >= 0.5.0**
 <hr/>
 
-This plugin updates or creates a `manifest` attribute on the `html` tag of the index.html page.  It versions the manifest file using the [ember-cli-deploy-revision-data][3] plugin. The default path is `/_rev/${revisionKey}/manifest.appcache` and can be customized using the `buildManifestPath` configuration option.
+This plugin updates or creates a `manifest` attribute on the `html` tag of the index.html page.  It versions the manifest file using the [ember-cli-deploy-revision-data][3] plugin.
 
 ## Quick Start
 To get up and running quickly, do the following:
@@ -44,17 +44,23 @@ For detailed information on what plugin hooks are and how they work, please refe
 
 ## Configuration Options
 
-### buildManifestPath
+### manifestFileName
+  The name of the manifest file to be created and refrenced in the html manifest attribute.
 
-  A funtion that returns the path to the the manifest file.
+*Default:* `'manifest.appcache'`
 
-  ```javascript
-  buildManifestPath(context) {
+### manifestRoot
+
+  A funtion that returns the root path to the the manifest file.
+
+*Default:* 
+```javascript
+  manifestRoot(context) {
     var revisionKey = context.revisionData && context.revisionData.revisionKey;
 
-    return `/_rev/${revisionKey}/manifest.appcache`;
+    return '/_rev/' + revisionKey;
   }
-  ```
+```
 
 ## Prerequisites
 
