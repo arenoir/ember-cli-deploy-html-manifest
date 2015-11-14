@@ -1,13 +1,13 @@
 'use strict';
 
-var fs     = require('fs');
+var fs     = require('node-fs');
 var path   = require('path');
 var assert = require('ember-cli/tests/helpers/assert');
 var cheerio = require('cheerio');
 
 function mkdir(path) {
   try {
-    fs.mkdirSync(path);
+    fs.mkdirSync(path, "0777", true);
   } catch(e) {
     if ( e.code != 'EEXIST' ) throw e;
   }
