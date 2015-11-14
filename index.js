@@ -10,6 +10,7 @@ var denodeify = RSVP.denodeify;
 var readFile  = denodeify(fs.readFile);
 var writeFile = denodeify(fs.writeFile);
 
+var createHtmlManifest = require('./lib/utilities/create-html-manifest');
 var replaceHtmlManifest = require('./lib/utilities/replace-html-manifest');
 var DeployPluginBase = require('ember-cli-deploy-plugin');
 
@@ -31,10 +32,26 @@ module.exports = {
           var revisionKey = context.revisionData && context.revisionData.revisionKey;
 
           return '/_rev/' + revisionKey;
+        },
+
+        prependPath: '',
+        
+        excludePaths: ['index.html'],
+        
+        includePaths: [],
+        
+        network: ['*'],
+        
+        fallback: [],
+        
+        distFiles: function(context) {
+          return context.distFiles || [];
         }
       },
 
       didPrepare: function(context) {
+        this._createManifestFile(context);
+        
         var distDir      = this.readConfig('distDir');
         var htmlPagePath = path.join(distDir, 'index.html');
         
@@ -69,6 +86,37 @@ module.exports = {
         )
 
         return modifying;
+      },
+
+      _createManifestFile: function(context) {
+        var version  = context.revisionData && context.revisionData.revisionKey;
+        var filename = this.readConfig('manifestFileName');
+        var distDir  = this.readConfig('distDir');
+        var manifestDistPath = path.join(distDir, filename);
+
+        this.log('Build manifest file `'+ filename + '`');
+
+        var options = {
+          prependPath: this.readConfig('prependPath'),
+          excludePaths: this.readConfig('excludePaths'),
+          includePaths: this.readConfig('includePaths'),
+          network: this.readConfig('network'),
+          fallback: this.readConfig('fallback'),
+          version: version
+        };
+
+        var distFiles = this.readConfig('distFiles');
+
+        var manifest = createHtmlManifest(distFiles, options);
+
+        writeFile(manifestDistPath, manifest).then(
+          function() {
+            this.log('Successfully created manifest file.', { color: 'green' });
+          },
+          function() {
+            this.log('Faild to create manifest file.', { color: 'red' });
+          }
+        );
       }
     });
 

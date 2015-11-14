@@ -7,7 +7,7 @@
 **WARNING: This plugin is only compatible with ember-cli-deploy versions >= 0.5.0**
 <hr/>
 
-This plugin updates or creates a `manifest` attribute on the `html` tag of the index.html page.  It versions the manifest file using the [ember-cli-deploy-revision-data][3] plugin.
+This plugin creates a html cache manifest file and updates the `manifest` attribute on the `html` tag of the index.html page.  It versions the manifest file using the [ember-cli-deploy-revision-data][3] plugin.
 
 ## Quick Start
 To get up and running quickly, do the following:
@@ -61,6 +61,24 @@ For detailed information on what plugin hooks are and how they work, please refe
     return '/_rev/' + revisionKey;
   }
 ```
+
+### excludePaths
+
+  An array of paths that should not be included in the cache manifest.
+
+*Default:*  ```['index.html']```
+  
+
+### includePaths
+  A list of paths that should be added to the cache manifest file. 
+
+*Default:* ```['/']```
+
+### network
+  A list of paths that should be added to the NETWORK section of the cache manifest. 
+
+*Default:* ```['*']```
+
 
 ## Prerequisites
 

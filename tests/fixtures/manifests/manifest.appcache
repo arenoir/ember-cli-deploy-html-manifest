@@ -1,0 +1,11 @@
+CACHE MANIFEST
+# version 89b1d82820a24bfb075c5b43b36f454b
+
+CACHE:
+https://mycdn.com/assets/foo-178d195608c0b18cf0ec5e982b39cad8.js
+https://mycdn.com/assets/bar-da3d0fb7db52f8273550c11403df178f.css
+https://mycdn.com/images/logo-89b1d82820a24bfb075c5b43b36f454b.png
+/
+
+NETWORK:
+*
