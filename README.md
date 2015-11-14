@@ -1,7 +1,7 @@
 # ember-cli-deploy-html-manifest [![Build Status](https://travis-ci.org/arenoir/ember-cli-deploy-html-manifest.svg?branch=master)](https://travis-ci.org/arenoir/ember-cli-deploy-html-manifest)
 
 
-> An ember-cli-deploy plugin to add a versioned manifest attribute to the html element of the index.html page.
+> An ember-cli-deploy plugin to generate a html cache manifest and update the manifest attribute of the index.html page.
 
 <hr/>
 **WARNING: This plugin is only compatible with ember-cli-deploy versions >= 0.5.0**
@@ -56,7 +56,7 @@ For detailed information on what plugin hooks are and how they work, please refe
 ### manifestRoot
 
   A funtion that returns the root path to the the manifest file. Is refrenced in the html tag `manifest` attribute.
-  
+
 *Default:* 
 ```javascript
   manifestRoot(context) {
