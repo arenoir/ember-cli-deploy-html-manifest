@@ -27,7 +27,7 @@ module.exports = {
         buildManifestPath: function(context) {
           var revisionKey = context.revisionData && context.revisionData.revisionKey;
 
-          return `/_rev/${revisionKey}/manifest.appcache`;
+          return '/_rev/' + revisionKey + '/manifest.appcache';
         }
       },
 
