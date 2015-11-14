@@ -26,7 +26,7 @@ module.exports = {
           return context.distDir;
         },
 
-        manifestFileName: 'manifest.appcache',
+        filename: 'manifest.appcache',
 
         manifestRoot: function(context) {
           var revisionKey = context.revisionData && context.revisionData.revisionKey;
@@ -56,7 +56,7 @@ module.exports = {
         var htmlPagePath = path.join(distDir, 'index.html');
         
         var manifestRoot = this.readConfig('manifestRoot');
-        var filename     = this.readConfig('manifestFileName');
+        var filename     = this.readConfig('filename');
         var manifestPath = path.join(manifestRoot, filename);
 
 
@@ -90,7 +90,7 @@ module.exports = {
 
       _createManifestFile: function(context) {
         var version  = context.revisionData && context.revisionData.revisionKey;
-        var filename = this.readConfig('manifestFileName');
+        var filename = this.readConfig('filename');
         var distDir  = this.readConfig('distDir');
         var manifestDistPath = path.join(distDir, filename);
 

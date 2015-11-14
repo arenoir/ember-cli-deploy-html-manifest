@@ -24,7 +24,11 @@ $ ember install ember-cli-deploy-html-manifest
 
 ```javascript
 ENV['html-manifest'] = {
-  
+  filename: 'manifest.appcache',
+  prependPath: 'https://mycdn.com/',
+  excludePaths: ['index.html'],
+  includePaths: ['/mobile/'],
+  network: ['*']
 }
 ```
 
@@ -44,15 +48,15 @@ For detailed information on what plugin hooks are and how they work, please refe
 
 ## Configuration Options
 
-### manifestFileName
-  The name of the manifest file to be created and refrenced in the html manifest attribute.
+### filename
+  The name of the manifest file to be created and refrenced in the html tag `manifest` attribute.
 
 *Default:* `'manifest.appcache'`
 
 ### manifestRoot
 
-  A funtion that returns the root path to the the manifest file.
-
+  A funtion that returns the root path to the the manifest file. Is refrenced in the html tag `manifest` attribute.
+  
 *Default:* 
 ```javascript
   manifestRoot(context) {
@@ -64,18 +68,18 @@ For detailed information on what plugin hooks are and how they work, please refe
 
 ### excludePaths
 
-  An array of paths that should not be included in the cache manifest.
+  An array of paths not to be included in the cache manifest.
 
 *Default:*  ```['index.html']```
   
 
 ### includePaths
-  A list of paths that should be added to the cache manifest file. 
+  A list of paths to be added to the cache manifest file. 
 
 *Default:* ```['/']```
 
 ### network
-  A list of paths that should be added to the NETWORK section of the cache manifest. 
+  A list of paths to be added to the NETWORK section of the cache manifest. 
 
 *Default:* ```['*']```
 
