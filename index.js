@@ -36,7 +36,7 @@ module.exports = {
         var manifestPath = this.readConfig('buildManifestPath');
         var htmlPagePath = path.join(distDir, 'index.html');
 
-        this.log(`Adding manifest attribute to html tag with value of "${manifestPath}".`);
+        this.log('Adding manifest attribute to html tag with value of "' + manifestPath + '".');
         
         var modifying = new Promise(function(resolve, reject) {
           readFile(htmlPagePath).then(
