@@ -20,7 +20,7 @@ function cp(src, dest) {
 
 describe('the deploy plugin object', function() {
   var fixtureRoot;
-  var projectRoot;
+  var distDir;
   var plugin;
   var promise;
   var indexPage;
@@ -28,10 +28,10 @@ describe('the deploy plugin object', function() {
 
   before(function() {
     fixtureRoot = process.cwd() + '/tests/fixtures/dist'
-    projectRoot = process.cwd() + '/tmp/deploy-dist';
-    indexPage = projectRoot + '/index.html';
+    distDir = process.cwd() + '/tmp/deploy-dist';
+    indexPage = distDir + '/index.html';
     fixturePage = fixtureRoot + '/index.html';
-    mkdir(projectRoot);
+    mkdir(distDir);
   });
 
   beforeEach(function() {
@@ -47,8 +47,8 @@ describe('the deploy plugin object', function() {
       ui: {write: function() {}, writeLine: function() {}},
       config: {
         'html-manifest': {
-          projectRoot: function(context) {
-            return projectRoot;
+          distDir: function(context) {
+            return distDir;
           }
         }
       },
@@ -64,7 +64,6 @@ describe('the deploy plugin object', function() {
   });
 
   it('has a name', function() {
-    console.log(plugin.name)
     assert.equal('html-manifest', plugin.name);
   });
 

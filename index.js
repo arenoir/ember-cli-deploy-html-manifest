@@ -21,8 +21,8 @@ module.exports = {
       name: options.name,
 
       defaultConfig: {
-        projectRoot: function(context) {
-          return context.project.root;
+        distDir: function(context) {
+          return context.distDir;
         },
         buildManifestPath(context) {
           var revisionKey = context.revisionData && context.revisionData.revisionKey;
@@ -32,9 +32,9 @@ module.exports = {
       },
 
       didPrepare(context) {
-        var projectRoot     = this.readConfig('projectRoot');
+        var distDir     = this.readConfig('distDir');
         var manifestPath    = this.readConfig('buildManifestPath');
-        var htmlPagePath    = path.join(projectRoot,'index.html');
+        var htmlPagePath    = path.join(distDir,'index.html');
         
         return readFile(htmlPagePath).then( function(data) {
           return replaceHtmlManifest(data, manifestPath).then( function(html) {
