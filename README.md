@@ -1,4 +1,5 @@
-# ember-cli-deploy-html-manifest
+# ember-cli-deploy-html-manifest [![Build Status](https://travis-ci.org/arenoir/ember-cli-deploy-html-manifest.svg?branch=master)](https://travis-ci.org/arenoir/ember-cli-deploy-html-manifest)
+
 
 > An ember-cli-deploy plugin to add a versioned manifest attribute to the html element of the index.html page.
 
