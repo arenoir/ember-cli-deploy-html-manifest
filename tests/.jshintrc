@@ -1,5 +1,11 @@
 {
   "predef": [
+    "Promise",
+    "before",
+    "beforeEach", 
+    "afterEach", 
+    "describe", 
+    "it",
     "document",
     "window",
     "location",
@@ -23,7 +29,7 @@
     "currentPath",
     "currentRouteName"
   ],
-  "node": false,
+  "node": true,
   "browser": false,
   "boss": true,
   "curly": true,

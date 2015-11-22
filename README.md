@@ -59,10 +59,10 @@ For detailed information on what plugin hooks are and how they work, please refe
 
 *Default:* 
 ```javascript
-  manifestRoot(context) {
+  function(context) {
     var revisionKey = context.revisionData && context.revisionData.revisionKey;
 
-    return '/_rev/' + revisionKey;
+    return '/revisions/' + revisionKey;
   }
 ```
 

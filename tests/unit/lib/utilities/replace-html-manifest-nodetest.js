@@ -11,11 +11,11 @@ describe('replace-html-manifest', function() {
 
   it('adds manifest attribute to html tag', function() {
     var data = fs.readFileSync(process.cwd() + '/tests/fixtures/dist/index.html');
-    var manifestPath = "/_rev/ccc/manifest.appcache"
+    var manifestPath = "/_rev/ccc/manifest.appcache";
     
     return assert.isFulfilled(subject(data, manifestPath))
       .then(function(html) {
-        var $ = cheerio.load(html)
+        var $ = cheerio.load(html);
         
         assert.equal($('html').attr('manifest'), manifestPath);
       });

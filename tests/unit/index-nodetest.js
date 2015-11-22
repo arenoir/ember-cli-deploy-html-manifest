@@ -1,7 +1,6 @@
 'use strict';
 
 var fs     = require('node-fs');
-var path   = require('path');
 var assert = require('ember-cli/tests/helpers/assert');
 var cheerio = require('cheerio');
 
@@ -9,24 +8,24 @@ function mkdir(path) {
   try {
     fs.mkdirSync(path, "0777", true);
   } catch(e) {
-    if ( e.code != 'EEXIST' ) throw e;
+    if ( e.code !== 'EEXIST' ) {
+      throw e;
+    }
   }
 }
 
 function rm(path) {
-    try {
+  try {
     fs.unlinkSync(path);
   } catch(e) {
-    if ( e.code != 'ENOENT' ) throw e;
+    if ( e.code !== 'ENOENT' ) {
+      throw e;
+    }
   }
 }
 
 function cp(src, dest) {
   fs.createReadStream(src).pipe(fs.createWriteStream(dest));
-}
-
-function readFile(path) {
-  return fs.readFileSync(process.cwd() + path, {encoding: 'utf8'});
 }
 
 
@@ -40,7 +39,7 @@ describe('the deploy plugin object', function() {
   var manifestFile;
 
   before(function() {
-    fixtureRoot = process.cwd() + '/tests/fixtures/dist'
+    fixtureRoot = process.cwd() + '/tests/fixtures/dist';
     distDir = process.cwd() + '/tmp/deploy-dist';
     indexPage = distDir + '/index.html';
     fixturePage = fixtureRoot + '/index.html';
@@ -51,8 +50,8 @@ describe('the deploy plugin object', function() {
   beforeEach(function() {
     var subject = require('../../index');
     
-    rm(manifestFile)
-    rm(indexPage)
+    rm(manifestFile);
+    rm(indexPage);
     cp(fixturePage, indexPage);
 
     plugin = subject.createDeployPlugin({
@@ -66,7 +65,7 @@ describe('the deploy plugin object', function() {
           prependPath: 'https://mycdn.com/',
           excludePaths: ['index.html'],
           includePaths: ['/'],
-          distDir: function(context) {
+          distDir: function() {
             return distDir;
           }
         }
@@ -103,7 +102,7 @@ describe('the deploy plugin object', function() {
       return assert.isFulfilled(promise)
         .then(function() {
           var data = fs.readFileSync(indexPage, {encoding: 'utf8'});
-          var manifestPath = "/_rev/89b1d82820a24bfb075c5b43b36f454b/manifest.appcache";
+          var manifestPath = "/revisions/89b1d82820a24bfb075c5b43b36f454b/manifest.appcache";
 
           var $ = cheerio.load(data);
         
@@ -116,7 +115,7 @@ describe('the deploy plugin object', function() {
 
       return assert.isFulfilled(promise)
         .then(function() {
-          var file = fs.readFileSync(manifestFile, {encoding: 'utf8'})
+          var file = fs.readFileSync(manifestFile, {encoding: 'utf8'});
           var expected = fs.readFileSync(process.cwd() +'/tests/fixtures/manifests/manifest.appcache', {encoding: 'utf8'});
           assert.equal(file, expected);          
         });

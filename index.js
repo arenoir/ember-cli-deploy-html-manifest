@@ -31,7 +31,7 @@ module.exports = {
         manifestRoot: function(context) {
           var revisionKey = context.revisionData && context.revisionData.revisionKey;
 
-          return '/_rev/' + revisionKey;
+          return '/revisions/' + revisionKey;
         },
 
         prependPath: '',
@@ -83,7 +83,7 @@ module.exports = {
           function() {
             this.log('Faild to add manifest attribute to html tag.', { color: 'red' });
           }
-        )
+        );
 
         return modifying;
       },
