@@ -22,10 +22,6 @@
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
     "ember-cli": "^2.4.3",
-    "ember-cli-dependency-checker": "^1.2.0",
-    "ember-cli-release": "0.2.8",
-    "ember-cli-sri": "^2.1.0",
-    "ember-cli-uglify": "^1.2.0",
     "glob": "^5.0.5",
     "mocha": "^2.2.4",
     "mocha-jshint": "^2.2.5",
@@ -40,10 +36,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "cheerio": "^0.19.0",
-    "ember-cli-deploy-plugin": "0.2.0",
+    "ember-cli-deploy-plugin": "0.2.5",
     "rsvp": "^3.0.18"
-  },
-  "ember-addon": {
-    "configPath": "tests/dummy/config"
   }
 }
