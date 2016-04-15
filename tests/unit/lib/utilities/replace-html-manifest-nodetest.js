@@ -1,4 +1,8 @@
-var assert = require('ember-cli/tests/helpers/assert');
+'use strict';
+var chai = require("chai");
+var chaiAsPromised = require("chai-as-promised");
+chai.use(chaiAsPromised);
+var assert  = chai.assert;
 var cheerio = require('cheerio');
 var fs = require('fs');
 
