@@ -40,4 +40,19 @@ describe('create-html-manifest', function() {
 
     assert.equal(result, expected);
   });
+
+
+  it('it excludes paths with glob', function() {
+
+    options.excludePaths = ["index.html", "assets/*.css"];
+
+    var expected = readFile('/tests/fixtures/manifests/manifest.nocss');
+
+    var result = createManifest(distFiles, options);
+
+    assert.equal(result, expected);
+  });
+
 });
+
+

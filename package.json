@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-deploy-html-manifest",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An ember-cli-deploy plugin to generate a html cache manifest and update the manifest attribute of the index.html page.",
   "directories": {
     "doc": "doc",
@@ -36,6 +36,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "cheerio": "^0.19.0",
+    "minimatch": "v3.0.0",
     "ember-cli-deploy-plugin": "0.2.5",
     "rsvp": "^3.0.18"
   }

@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.0.3] - 2016-04-14
+- [Issue #2]("https://github.com/arenoir/ember-cli-deploy-html-manifest/issues/2") excludePaths` should support globs.
+
 ## [0.0.2] - 2015-11-22
 - Change default `manifestRoot` to ```/revisions/${revisionKey}```.
 - Add jshint tests and fix style errors.
