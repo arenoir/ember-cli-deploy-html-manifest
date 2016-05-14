@@ -52,7 +52,7 @@ describe('the deploy plugin object', function() {
 
   beforeEach(function() {
     var subject = require('../../index');
-    
+
     rm(manifestFile);
     rm(indexPage);
     cp(fixturePage, indexPage);
@@ -88,7 +88,7 @@ describe('the deploy plugin object', function() {
     plugin.beforeHook(context);
     plugin.configure(context);
 
-    promise = plugin.didPrepare.call(plugin, context);
+    promise = plugin.willUpload.call(plugin, context);
   });
 
   it('has a name', function() {
@@ -97,10 +97,10 @@ describe('the deploy plugin object', function() {
 
   it('implements the correct hooks', function() {
     assert.equal(typeof plugin.configure, 'function');
-    assert.equal(typeof plugin.didPrepare, 'function');
+    assert.equal(typeof plugin.willUpload, 'function');
   });
 
-  describe('didPrepare hook', function() {
+  describe('willUpload hook', function() {
     it('replaces index.html html tag manifest attribute', function() {
       return assert.isFulfilled(promise)
         .then(function() {
@@ -108,7 +108,7 @@ describe('the deploy plugin object', function() {
           var manifestPath = "/revisions/89b1d82820a24bfb075c5b43b36f454b/manifest.appcache";
 
           var $ = cheerio.load(data);
-        
+
           assert.equal($('html').attr('manifest'), manifestPath);
         });
     });
@@ -120,7 +120,7 @@ describe('the deploy plugin object', function() {
         .then(function() {
           var file = fs.readFileSync(manifestFile, {encoding: 'utf8'});
           var expected = fs.readFileSync(process.cwd() +'/tests/fixtures/manifests/manifest.appcache', {encoding: 'utf8'});
-          assert.equal(file, expected);          
+          assert.equal(file, expected);
         });
     });
 
