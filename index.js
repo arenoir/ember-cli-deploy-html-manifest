@@ -35,15 +35,15 @@ module.exports = {
         },
 
         prependPath: '',
-        
+
         excludePaths: ['index.html'],
-        
+
         includePaths: [],
-        
+
         network: ['*'],
-        
+
         fallback: [],
-        
+
         distFiles: function(context) {
           return context.distFiles || [];
         }
@@ -51,41 +51,37 @@ module.exports = {
 
       didPrepare: function(context) {
         this._createManifestFile(context);
-        
+
         var distDir      = this.readConfig('distDir');
         var htmlPagePath = path.join(distDir, 'index.html');
-        
+
         var manifestRoot = this.readConfig('manifestRoot');
         var filename     = this.readConfig('filename');
         var manifestPath = path.join(manifestRoot, filename);
 
-
         this.log('Adding manifest attribute to html tag with value of "' + manifestPath + '".');
-        
-        var modifying = new Promise(function(resolve, reject) {
-          readFile(htmlPagePath).then(
-            function(data) {
-              replaceHtmlManifest(data, manifestPath).then(
-                function(html) {
-                  writeFile(htmlPagePath, html).then(resolve, reject);
-                },
-                reject
-              );
-            },
-            reject
-          );
-        });
 
-        modifying.then(
-          function() {
+        this.log('distDir => ' + distDir, { verbose: true });
+        this.log('htmlPagePath => ' + htmlPagePath, { verbose: true });
+        this.log('manifestRoot => ' + manifestRoot, { verbose: true });
+        this.log('filename => ' + filename, { verbose: true });
+        this.log('manifestPath => ' + manifestPath, { verbose: true });
+
+        return readFile(htmlPagePath)
+          .then(function(data) {
+            return replaceHtmlManifest(data, manifestPath);
+          })
+          .then(function(html) {
+            return writeFile(htmlPagePath, html);
+          })
+          .then(function() {
             this.log('Successfully added manifest attribute to html tag.', { color: 'green' });
-          },
+            return { distFiles: [manifestPath] };
+          }.bind(this),
           function() {
             this.log('Faild to add manifest attribute to html tag.', { color: 'red' });
-          }
-        );
-
-        return modifying;
+            return Promise.reject;
+          }.bind(this));
       },
 
       _createManifestFile: function(context) {
