@@ -53,7 +53,6 @@ module.exports = {
         this._createManifestFile(context);
 
         var distDir      = this.readConfig('distDir');
-        var distFiles    = this.readConfig('distFiles');
         var htmlPagePath = path.join(distDir, 'index.html');
 
         var manifestRoot = this.readConfig('manifestRoot');
@@ -77,7 +76,7 @@ module.exports = {
           })
           .then(function() {
             this.log('Successfully added manifest attribute to html tag.', { color: 'green' });
-            return { distFiles: distFiles.concat([manifestPath]) };
+            return { distFiles: [manifestPath] };
           }.bind(this),
           function() {
             this.log('Faild to add manifest attribute to html tag.', { color: 'red' });
