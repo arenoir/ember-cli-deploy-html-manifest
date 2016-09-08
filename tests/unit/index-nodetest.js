@@ -124,5 +124,14 @@ describe('the deploy plugin object', function() {
         });
     });
 
+    it('returns manifest.appcache in distFiles ', function() {
+      return assert.isFulfilled(promise)
+        .then(function(response) {
+          assert.equal(response.distFiles.length, 1);
+          assert.equal(response.distFiles[0], "/revisions/89b1d82820a24bfb075c5b43b36f454b/manifest.appcache");
+
+        });
+    });
+
   });
 });
