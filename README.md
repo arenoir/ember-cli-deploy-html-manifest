@@ -4,7 +4,7 @@
 > An ember-cli-deploy plugin to generate a html cache manifest and update the manifest attribute of the index.html page.
 
 <hr/>
-**WARNING: This plugin is only compatible with ember-cli-deploy versions >= 0.5.0**
+**WARNING: Html manifest is [deprecated](https://www.fxsitecompat.com/en-CA/docs/2015/application-cache-api-has-been-deprecated/). This plugin is no longer maintained. I suggest using [ember-service-worker](http://ember-service-worker.com) **
 <hr/>
 
 This plugin creates a html cache manifest file and updates the `manifest` attribute on the `html` tag of the index.html page.  It versions the manifest file using the [ember-cli-deploy-revision-data][3] plugin.
@@ -57,7 +57,7 @@ For detailed information on what plugin hooks are and how they work, please refe
 
   A funtion that returns the root path to the the manifest file. Is refrenced in the html tag `manifest` attribute.
 
-*Default:* 
+*Default:*
 ```javascript
   function(context) {
     var revisionKey = context.revisionData && context.revisionData.revisionKey;
@@ -71,15 +71,15 @@ For detailed information on what plugin hooks are and how they work, please refe
   An array of paths not to be included in the cache manifest.
 
 *Default:*  ```['index.html']```
-  
+
 
 ### includePaths
-  A list of paths to be added to the cache manifest file. 
+  A list of paths to be added to the cache manifest file.
 
 *Default:* ```['/']```
 
 ### network
-  A list of paths to be added to the NETWORK section of the cache manifest. 
+  A list of paths to be added to the NETWORK section of the cache manifest.
 
 *Default:* ```['*']```
 

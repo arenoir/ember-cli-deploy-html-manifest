@@ -1,5 +1,8 @@
 # Change Log
 
+## [0.0.6] - 2019-05-07
+- No changes. Project is not useful. Replaced by service workers.   
+
 ## [0.0.5] - 2016-09-08
 - [Fix duplicate distFiles]("https://github.com/arenoir/ember-cli-deploy-html-manifest/pull/5")
 
