@@ -1,10 +1,14 @@
+
+**WARNING: Html manifest is [deprecated](https://www.fxsitecompat.com/en-CA/docs/2015/application-cache-api-has-been-deprecated/). This plugin is no longer maintained. Use [ember-service-worker](http://ember-service-worker.com)**
+
 # ember-cli-deploy-html-manifest [![Build Status](https://travis-ci.org/arenoir/ember-cli-deploy-html-manifest.svg?branch=master)](https://travis-ci.org/arenoir/ember-cli-deploy-html-manifest)
 
 
 > An ember-cli-deploy plugin to generate a html cache manifest and update the manifest attribute of the index.html page.
 
 <hr/>
-**WARNING: Html manifest is [deprecated](https://www.fxsitecompat.com/en-CA/docs/2015/application-cache-api-has-been-deprecated/). This plugin is no longer maintained. I suggest using [ember-service-worker](http://ember-service-worker.com) **
+
+
 <hr/>
 
 This plugin creates a html cache manifest file and updates the `manifest` attribute on the `html` tag of the index.html page.  It versions the manifest file using the [ember-cli-deploy-revision-data][3] plugin.
