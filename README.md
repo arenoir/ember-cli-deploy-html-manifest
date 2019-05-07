@@ -6,11 +6,6 @@
 
 > An ember-cli-deploy plugin to generate a html cache manifest and update the manifest attribute of the index.html page.
 
-<hr/>
-
-
-<hr/>
-
 This plugin creates a html cache manifest file and updates the `manifest` attribute on the `html` tag of the index.html page.  It versions the manifest file using the [ember-cli-deploy-revision-data][3] plugin.
 
 ## Quick Start
